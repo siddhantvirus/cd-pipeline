@@ -1,0 +1,16 @@
+{
+  "name": "ci-cd-pipeline",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "npx nodemon"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@octokit/rest": "^18.0.12",
+    "@octokit/webhooks": "^7.21.0",
+    "express": "^4.17.1"
+  }
+}
