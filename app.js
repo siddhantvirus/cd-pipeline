@@ -3,7 +3,7 @@ const { Octokit } = require("@octokit/rest");
 const { Webhooks } = require("@octokit/webhooks");
 const secret = "600736c9d73473b781d0ffbdca6d24b092351c3f";
 const webhooks = new Webhooks({ secret });
-const PORT = 5001;
+const PORT = process.env.PORT || 5001;
 const cp = require("child_process");
 
 const octokit = new Octokit({
