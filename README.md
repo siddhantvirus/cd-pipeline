@@ -7,10 +7,27 @@ The Deployment status on the repository is updated from `pending` to `in_progres
 
 These are the environment variables required to be saved in a `.env` file in the same directory as app.js to make sure that the application can be successfully started.
 
+### Choosing a token
+
+`PAT` only ever needs to create deployments and update their status, so give it the
+narrowest credential that allows that:
+
+- **Recommended — fine-grained personal access token:** scope it to the single repository
+  you are deploying and grant **Deployments: Read and write** (plus **Contents: Read**, which
+  `createDeployment` requires to resolve the git ref). Nothing else.
+- **Better for anything shared or long-lived — a GitHub App:** install it on just that
+  repository with the same two permissions and exchange its private key for a short-lived
+  installation token at runtime. Installation tokens expire in an hour, so a leak has a
+  much smaller blast radius than a PAT.
+
+Avoid a classic PAT with the full `repo` scope. That scope grants read and write access to
+code, issues, releases and settings across **every** repository you can reach — vastly more
+than a deployment listener needs, and it cannot be narrowed to one repository.
+
 These are the parameters that need to be set in your environment file ->
 
 ```
-PAT= // Personal Access Token obtained from GitHub with the repo scope
+PAT= // Fine-grained PAT or GitHub App installation token, scoped to this repo with Deployments: Read and write
 userAgent= pipeline // or any other name that you can use to identify the application 
 tZone= Asia/Kolkata // Set a Timezone according to your system's timezone . Refer this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for the list of timezones ad the format.
 owner= // owner of the repository
