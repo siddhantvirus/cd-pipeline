@@ -1,7 +1,7 @@
 {
   "name": "ci-cd-pipeline",
   "version": "1.0.0",
-  "description": "A simple node application to set up Continpus Delivery",
+  "description": "A simple node application to set up Continuous Delivery",
   "main": "app.js",
   "scripts": {
     "test": "npx nodemon",
